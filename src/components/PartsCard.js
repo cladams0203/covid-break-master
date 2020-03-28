@@ -2,6 +2,7 @@ import React from 'react'
 
 export default function PartsCard(props) {
      const { name, url, price } = props.part
+     console.log(props.part)
     return(
         <div>
             <div>
@@ -21,6 +22,9 @@ export default function PartsCard(props) {
                 <p> {price} </p>
             </div>
             <img src={url} />
+            {props.setCart && <button onClick={() => {
+                props.cartRemove(props.part.id, props.part.name)
+            }}>Remove from Cart</button>}
         </div>
     )
 }

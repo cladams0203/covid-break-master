@@ -12,8 +12,8 @@ export default function StoreContainer(props) {
         <div>
            {categories.map((item, index) => {
                return (
-                <Link to={`/category/${index}`}>
-                    <StoreCategory name={item.name} image={item.image} key={index} id={index} />
+                <Link to={`/category/${index}`} key={index}>
+                    <StoreCategory name={item.name} image={item.image} id={index} />
                 </Link>
                )
             })}

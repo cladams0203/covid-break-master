@@ -12,9 +12,9 @@ const data = {
     motherboards: motherboards,
     memory: memory,
     storage: storage,
-    videoCards: graphics,
+    graphics: graphics,
     cases: cases,
-    cpuCoolers: coolers
+    coolers: coolers
 }
 
 export default data
