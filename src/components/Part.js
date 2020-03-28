@@ -2,7 +2,6 @@ import React from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 
 export default function Part(props) {
-    console.log(props)
     const {partId, id} = useParams()
     const history= useHistory()
     const categories = []

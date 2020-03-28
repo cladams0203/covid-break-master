@@ -17,13 +17,13 @@ function App() {
         ...cart,
         items: cart.items.filter(item => {
           if(item.id == id && item.name == name) {
-
           }else{
             return item
           }
         })
       })
   }
+  
   return (
     <div className="App">
       <Router>

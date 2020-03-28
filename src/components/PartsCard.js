@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function PartsCard(props) {
      const { name, url, price } = props.part
-     console.log(props.part)
+
     return(
         <div>
             <div>
