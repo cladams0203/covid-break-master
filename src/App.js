@@ -7,6 +7,16 @@ import CategoryContainer from './components/CategoryContainer'
 import Part from './components/Part'
 import Header from './components/Header'
 import CartDetails from './components/CartDetails';
+import Styled from "styled-components";
+
+
+//styling
+
+const AllContainer = Styled.div`
+display: flex;
+justify-content:center;
+flex-direction: column;
+`
 
 function App() {
   const [parts, setParts] = useState(data)
@@ -25,6 +35,8 @@ function App() {
   }
   
   return (
+    <AllContainer>
+      
     <div className="App">
       <Router>
       <Header cart={cart} />
@@ -42,6 +54,8 @@ function App() {
         </Route>
       </Router>
     </div>
+
+    </AllContainer>
   );
 }
 

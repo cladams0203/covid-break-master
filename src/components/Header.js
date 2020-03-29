@@ -1,21 +1,45 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import CartHeader from './CartHeader'
+import Styled from "styled-components"
+
+const StyledLink = Styled(NavLink)`
+color:white;
+text-decoration: none;
+margin: 2%;
+font-family: 'Poppins', sans-serif;
+weight: 400;
+`
+
+const SuperNav = Styled.nav`
+display:flex;
+width: 100%;
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+box-shadow: 1px 10px 8px black;
+justify-content: space-between;
+position:fixed;
+`
+
+const CartDiv = Styled.div`
+
+`
+
 export default function Header(props) {
 
     return (
         <div>
-            <nav>
-                <NavLink to='/'>Home</NavLink>
-                <NavLink to='/category/0'>Processors</NavLink>
-                <NavLink to='/category/1'>Motherboards</NavLink>
-                <NavLink to='/category/2'>Memory</NavLink>
-                <NavLink to='/category/3'>Storage</NavLink>
-                <NavLink to='/category/4'>Graphics</NavLink>
-                <NavLink to='/category/5'>Cases</NavLink>
-                <NavLink to='/category/6'>Coolers</NavLink>
-            </nav>
+            <SuperNav>
+                <StyledLink to='/'>Home</StyledLink>
+                <StyledLink to='/category/0'>Processors</StyledLink>
+                <StyledLink to='/category/1'>Motherboards</StyledLink>
+                <StyledLink to='/category/2'>Memory</StyledLink>
+                <StyledLink to='/category/3'>Storage</StyledLink>
+                <StyledLink to='/category/4'>Graphics</StyledLink>
+                <StyledLink to='/category/5'>Cases</StyledLink>
+                <StyledLink to='/category/6'>Coolers</StyledLink>
+            
             <CartHeader cart={props.cart}/>
+            </SuperNav>
         </div>
     )
 }

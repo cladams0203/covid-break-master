@@ -9,7 +9,7 @@ export default function StoreCategory(props) {
                 <h3>{props.name}</h3>
                 <p></p>
             </div>
-            <img src={props.image} />
+            <img style={{maxWidth:"100%"}} src={props.image} />
         </div>
     )
 }
