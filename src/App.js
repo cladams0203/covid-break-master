@@ -8,6 +8,8 @@ import Part from './components/Part'
 import Header from './components/Header'
 import CartDetails from './components/CartDetails';
 import Styled from "styled-components";
+import { CartContext } from './context/CartContext'
+import { PartContext } from './context/PartContext'
 
 
 
@@ -52,22 +54,24 @@ function App() {
 
   return (
     <Router>
-      <Header cart={cart} />
-    <AllContainer>
-      
-    <div className="App">
-        <Route exact path='/'>
-          <StoreContainer parts={parts} />
-        </Route>
-        <Route exact path='/category/:id'>
-          <CategoryContainer parts={parts} cartRemove={cartRemove} cartAdd={cartAdd} cart={cart} />
-        </Route>
-        <Route path='/cart'>
-          <CartDetails cart={cart} setCart={setCart} cartRemove={cartRemove}/>
-        </Route>
-    </div>
-
-    </AllContainer>
+      <PartContext.Provider value={{ parts }}>
+        <CartContext.Provider value={{ cart, setCart, cartAdd, cartRemove }}>
+          <Header />
+          <AllContainer>  
+          <div className="App">
+              <Route exact path='/'>
+                <StoreContainer />
+              </Route>
+              <Route exact path='/category/:id'>
+                <CategoryContainer  />
+              </Route>
+              <Route path='/cart'>
+                <CartDetails />
+              </Route>
+          </div>
+          </AllContainer>
+        </CartContext.Provider>
+      </PartContext.Provider>
     </Router>
   );
 }

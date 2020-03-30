@@ -1,8 +1,9 @@
-import React from 'react'
+import React,  { useContext } from 'react'
 import {Link} from 'react-router-dom'
 import StoreCategory from './StoreCategory'
 import Styled from "styled-components"
 import Video from "../media/Technology.mp4"
+import { PartContext } from '../context/PartContext'
 
 //Styling
 const VideoBackground =  Styled.div `
@@ -34,9 +35,10 @@ const colors = ["rgba(217, 66, 255, 0.67)", "rgba(66, 88, 255, 0.67)", "rgba(66,
 
 
 export default function StoreContainer(props) {
+    const { parts } = useContext(PartContext)
     const categories = []
-    for(let obj in props.parts) {   
-        categories.push({name: obj, image: props.parts[obj][0].url})
+    for(let obj in parts) {   
+        categories.push({name: obj, image: parts[obj][0].url})
     }
     console.log(categories)
     return (

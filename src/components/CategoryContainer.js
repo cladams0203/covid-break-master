@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Link, Route, useParams, useRouteMatch } from 'react-router-dom'
 import PartsCard from './PartsCard'
 import Styled from "styled-components"
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { PartContext } from '../context/PartContext';
 
 
 const CategoryDiv = Styled.div`
@@ -22,13 +23,13 @@ border-radius: 25px;
 `
 
 export default function CategoryContainer(props) {
-    
+    const { parts } = useContext(PartContext)
     const { id } = useParams()
     const match = useRouteMatch()
 
     const categories = []
-    for(let obj in props.parts) {   
-        categories.push({name: obj, image: props.parts[obj][0].url})
+    for(let obj in parts) {   
+        categories.push({name: obj, image: parts[obj][0].url})
     }
     
     const [modal, setModal] = useState(false);
@@ -38,7 +39,7 @@ export default function CategoryContainer(props) {
 
     return (
         <CategoryDiv>
-            {categories.length > 0 && props.parts[`${categories[id].name}`].map((item, index) => {
+            {categories.length > 0 && parts[`${categories[id].name}`].map((item, index) => {
                 return (
                     <>
                         <ItemDiv onClick={() => {
@@ -55,7 +56,7 @@ export default function CategoryContainer(props) {
                     </>
                 )
             })}
-            {displayedItem ? <PartsCard toggleModal={toggleModal} modal={modal} part={displayedItem} cart={props.cart} cartRemove={props.cartRemove} cartAdd={props.cartAdd} /> : null}
+            {displayedItem ? <PartsCard toggleModal={toggleModal} modal={modal} part={displayedItem}  /> : null}
         </CategoryDiv>
 
     )

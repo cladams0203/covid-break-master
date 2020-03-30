@@ -1,21 +1,25 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
+import { PartContext } from '../context/PartContext'
+import { CartContext } from '../context/CartContext'
 
 export default function Part(props) {
+    const { parts } = useContext(PartContext)
+    const { cart, setCart } = useContext(CartContext)
     const {partId, id} = useParams()
     const history= useHistory()
     const categories = []
-    for(let obj in props.parts) {   
-        categories.push({name: obj, image: props.parts[obj][0].url})
+    for(let obj in parts) {   
+        categories.push({name: obj, image: parts[obj][0].url})
     }
-    const item = props.parts[categories[id].name].filter(obj => obj.id == partId)
+    const item = parts[categories[id].name].filter(obj => obj.id == partId)
     const part = item[0]
     
     const addCart = (e) => {
         e.preventDefault()
-        props.setCart({
-            ...props.cart,
-            items:[...props.cart.items, part]
+        setCart({
+            ...cart,
+            items:[...cart.items, part]
         })
        history.push('/')
     }

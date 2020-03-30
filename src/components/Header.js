@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 import CartHeader from './CartHeader'
 import Styled from "styled-components"
 
+
 //Styling
 
 
@@ -26,7 +27,7 @@ position:fixed;
 
 
 export default function Header(props) {
-
+    
     return (
         <div>
             <SuperNav>
@@ -39,7 +40,7 @@ export default function Header(props) {
                 <StyledLink to='/category/5'>Cases</StyledLink>
                 <StyledLink to='/category/6'>Coolers</StyledLink>
             
-            <CartHeader cart={props.cart}/>
+            <CartHeader />
             </SuperNav>
         </div>
     )
