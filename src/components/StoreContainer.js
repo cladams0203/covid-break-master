@@ -4,15 +4,14 @@ import StoreCategory from './StoreCategory'
 import Styled from "styled-components"
 import Video from "../media/Technology.mp4"
 
-//Styles
-
+//Styling
 const VideoBackground =  Styled.div `
 display: flex;
 Overflow:hidden;
 `
 
 const ContainerDiv = Styled.div`
-margin:15% 0 0 1%;
+margin:14% 0 0 2%;
 display:flex;
 width: 100%;
 `
@@ -30,6 +29,9 @@ border-left: .5px solid rgba(66, 88, 255, 0.67);
 background-color: ${props => props.color};
 `
 const colors = ["rgba(217, 66, 255, 0.67)", "rgba(66, 88, 255, 0.67)", "rgba(66, 186, 255, 0.67)", "rgba(29, 185, 175, 0.67)", "rgba(138, 185, 29, 0.67)","rgba(73, 29, 185, 0.67)","rgba(127, 167, 235, 0.67)" ]
+
+
+
 
 export default function StoreContainer(props) {
     const categories = []

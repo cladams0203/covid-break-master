@@ -3,6 +3,9 @@ import { NavLink } from 'react-router-dom'
 import CartHeader from './CartHeader'
 import Styled from "styled-components"
 
+//Styling
+
+
 const StyledLink = Styled(NavLink)`
 color:white;
 text-decoration: none;
@@ -11,18 +14,16 @@ font-family: 'Poppins', sans-serif;
 weight: 400;
 `
 
+
 const SuperNav = Styled.nav`
 display:flex;
 width: 100%;
 background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
 box-shadow: 1px 10px 8px black;
-justify-content: space-between;
+justify-content: space-around;
 position:fixed;
 `
 
-const CartDiv = Styled.div`
-
-`
 
 export default function Header(props) {
 
