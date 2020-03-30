@@ -11,3 +11,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.modal-backdrop {
+  /* background-color: rgba(0,0,0,0.2); */
+  background-image: linear-gradient(to right, rgba(0, 224, 105, 0.35), rgba(0, 118, 209, 0.63));
+}
+
+h3 {
+  margin-top: 2%;
+  font-size: 1.3rem;
+}
+
+a:hover {
+  text-decoration: none;
+  color:white;
+}
