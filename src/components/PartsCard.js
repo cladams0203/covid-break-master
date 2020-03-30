@@ -1,9 +1,11 @@
-import React, {useState} from 'react'
+import React, { useState, useContext } from 'react'
 import Styled from "styled-components"
-import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { CartContext } from "../contextxt/CartContext"
 
 export default function PartsCard(props) {
-    const {name, url, price} = props.part
+    const { cart, cartRemove, cartAdd } = useContext(CartContext)
+    const { name, url, price } = props.part
     return (
         <div>
             <Modal isOpen={props.modal} toggle={props.toggleModal}>
@@ -39,20 +41,20 @@ export default function PartsCard(props) {
                     </p>
                     <img
                         style={{
-                        maxWidth: "100%",
-                        maxHeight: "173px"
-                    }}
-                        src={url}/>
+                            maxWidth: "100%",
+                            maxHeight: "173px"
+                        }}
+                        src={url} />
                 </ModalBody>
                 <ModalFooter>
-                    {props.cart.items.includes(props.part) ? <button
+                    {cart.items.includes(props.part) ? <button
                         onClick={() => {
-                        props.cartRemove(props.part.id, props.part.name)
-                    }}>Remove from Cart</button> : null}
+                            cartRemove(props.part.id, props.part.name)
+                        }}>Remove from Cart</button> : null}
                     <button
                         onClick={() => {
-                        props.cartAdd(props.part)
-                    }}>Add to Cart</button>
+                            cartAdd(props.part)
+                        }}>Add to Cart</button>
                     <Button color="secondary" onClick={props.toggleModal}>Close</Button>
                 </ModalFooter>
             </Modal>

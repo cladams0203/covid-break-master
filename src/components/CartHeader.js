@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import Styled from "styled-components";
-
+import { CartContext } from "../contextxt/CartContext";
 //Styling
 
 const CartDiv = Styled.div`
@@ -21,15 +21,16 @@ text-decoration: none;
 `
 
 export default function CartHeader(props) {
-  return (
-    <div>
-      <CartLink to="/cart">
-        <CartDiv>
-          <CartP>
-            <FontAwesomeIcon icon={faShoppingCart} />:{props.cart.items.length}{" "}
-          </CartP>
-        </CartDiv>
-      </CartLink>
-    </div>
-  );
+    const { cart } = useContext(CartContext);
+    return (
+        <div>
+            <CartLink to="/cart">
+                <CartDiv>
+                    <CartP>
+                        <FontAwesomeIcon icon={faShoppingCart} />:{cart.items.length}{" "}
+                    </CartP>
+                </CartDiv>
+            </CartLink>
+        </div>
+    );
 }
