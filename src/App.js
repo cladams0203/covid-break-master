@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useReducer } from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import './App.css';
 import data from './data'
@@ -8,6 +8,7 @@ import Part from './components/Part'
 import Header from './components/Header'
 import CartDetails from './components/CartDetails';
 import Styled from "styled-components";
+import { cartReducer, initialState, ADD_CART, REMOVE_CART } from './reducers/cartReducer'
 
 
 
@@ -23,36 +24,47 @@ height:100vh;
 
 
 function App() {
+  
+  // const obj1 = {name: 'Joshua'}
+  // const obj2 = obj1
+  // const obj3 = obj2
+  // obj3.name = 'David'
+  // console.log(obj1)
+  // console.log(obj3)
   const [parts, setParts] = useState(data)
-  const [cart, setCart] = useState({items:[], total: 0})
-
+  // const [cart, setCart] = useState({items:[], total: 0})
+  const [state, dispatch] = useReducer(cartReducer, {items:[], total:0})
+  console.log(initialState)
+  console.log(state)
   const cartRemove = (id, name) => {
-      let deleteSingle = false;
-      setCart({
-        ...cart,
-        items: cart.items.filter(item => {
-          if(item.id == id && item.name == name) {
-            if(deleteSingle) {
-              return item
-            }
-            deleteSingle = true;
-          }else{
-            return item
-          }
-        })
-      })
+      dispatch({type: REMOVE_CART, payload:{id, name}})
+      // let deleteSingle = false;
+      // setCart({
+      //   ...cart,
+      //   items: cart.items.filter(item => {
+      //     if(item.id == id && item.name == name) {
+      //       if(deleteSingle) {
+      //         return item
+      //       }
+      //       deleteSingle = true;
+      //     }else{
+      //       return item
+      //     }
+      //   })
+      // })
   }
   
   const cartAdd = part => {
-    setCart(prevCart => ({
-        ...prevCart,
-        items:[...prevCart.items, part]
-    }))
+    dispatch({type: ADD_CART, payload: part})
+    // setCart(prevCart => ({
+    //     ...prevCart,
+    //     items:[...prevCart.items, part]
+    // }))
   }
 
   return (
     <Router>
-      <Header cart={cart} />
+      <Header cart={state} />
     <AllContainer>
       
     <div className="App">
@@ -60,10 +72,10 @@ function App() {
           <StoreContainer parts={parts} />
         </Route>
         <Route exact path='/category/:id'>
-          <CategoryContainer parts={parts} cartRemove={cartRemove} cartAdd={cartAdd} cart={cart} />
+          <CategoryContainer parts={parts} cartRemove={cartRemove} cartAdd={cartAdd} cart={state} />
         </Route>
         <Route path='/cart'>
-          <CartDetails cart={cart} setCart={setCart} cartRemove={cartRemove}/>
+          <CartDetails cart={state} cartRemove={cartRemove}/>
         </Route>
     </div>
 
