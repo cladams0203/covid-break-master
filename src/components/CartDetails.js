@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PartsCard from './PartsCard'
 import Styled from "styled-components"
+import { CartContext } from '../contexts/CartContext'
 
 
 
@@ -32,23 +33,24 @@ margin:50%;
 `
 
 
-export default function CartDetails(props) {
+export default function CartDetails() {
+    const { cart, cartRemove } = useContext(CartContext)
 
-    const cartTotal = props.cart.items.reduce((total, item) => {
+    const cartTotal = cart.items.reduce((total, item) => {
         return total += item.price
     }, 0)
 
-    return(
+    return (
         <CartDiv>
-            {props.cart.items.map((item, index) => {
-                return (<div style={{width: "100%", margin: "0 3%"}}><h4>{item.name}</h4><img style={{
-                        maxWidth: "100%",
-                        maxHeight: "173px"
-                    }} src={item.url} /><RemoveButton onClick={() => props.cartRemove(item.id, item.name)}>Remove from Cart</RemoveButton></div>)
-            })}  
+            {cart.items.map((item, index) => {
+                return (<div style={{ width: "100%", margin: "0 3%" }}><h4>{item.name}</h4><img style={{
+                    maxWidth: "100%",
+                    maxHeight: "173px"
+                }} src={item.url} /><RemoveButton onClick={() => cartRemove(item.id, item.name)}>Remove from Cart</RemoveButton></div>)
+            })}
             <div>
                 {cartTotal === 0 ? <PCart>Add Items to Your Cart!!</PCart> : <TotalP>Total: {cartTotal} </TotalP>}
-            </div> 
+            </div>
         </CartDiv>
     )
 }
