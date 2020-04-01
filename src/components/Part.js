@@ -1,7 +1,10 @@
 import React from 'react'
 import { useParams, useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { ADD_CART } from '../reducers/cartReducer'
 
 export default function Part(props) {
+    const dispatch = useDispatch()
     const {partId, id} = useParams()
     const history= useHistory()
     const categories = []
@@ -13,10 +16,7 @@ export default function Part(props) {
     
     const addCart = (e) => {
         e.preventDefault()
-        props.setCart({
-            ...props.cart,
-            items:[...props.cart.items, part]
-        })
+        dispatch({type: ADD_CART, payload: part})  
        history.push('/')
     }
 
