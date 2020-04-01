@@ -3,7 +3,7 @@ import { Link, Route, useParams, useRouteMatch } from 'react-router-dom'
 import PartsCard from './PartsCard'
 import Styled from "styled-components"
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-
+import { useSelector } from "react-redux"
 
 const CategoryDiv = Styled.div`
 margin-top: 5%;
@@ -22,15 +22,16 @@ border-radius: 25px;
 `
 
 export default function CategoryContainer(props) {
-    
+    const cart = useSelector(state => state)
+
     const { id } = useParams()
     const match = useRouteMatch()
 
     const categories = []
-    for(let obj in props.parts) {   
-        categories.push({name: obj, image: props.parts[obj][0].url})
+    for (let obj in props.parts) {
+        categories.push({ name: obj, image: props.parts[obj][0].url })
     }
-    
+
     const [modal, setModal] = useState(false);
     const [displayedItem, setDisplayedItem] = useState()
 
@@ -44,14 +45,14 @@ export default function CategoryContainer(props) {
                         <ItemDiv onClick={() => {
                             toggleModal()
                             setDisplayedItem(item)
-                            }}>
+                        }}>
                             <h3>{item.name}</h3>
                             <img style={{
-                        maxWidth: "100%",
-                        maxHeight: "173px"
-                    }} src={item.url} />
+                                maxWidth: "100%",
+                                maxHeight: "173px"
+                            }} src={item.url} />
                             <p>{item.price}</p>
-                        </ItemDiv>      
+                        </ItemDiv>
                     </>
                 )
             })}

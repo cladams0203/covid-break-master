@@ -1,26 +1,34 @@
 import React from 'react'
 import { useParams, useHistory } from 'react-router-dom'
+import { useDispatch } from "react-redux"
+import { ADD_CART } from "../reducers/cartReducer"
+
+
 
 export default function Part(props) {
-    const {partId, id} = useParams()
-    const history= useHistory()
+    const dispatch = useDispatch();
+
+
+    const { partId, id } = useParams()
+    const history = useHistory()
     const categories = []
-    for(let obj in props.parts) {   
-        categories.push({name: obj, image: props.parts[obj][0].url})
+    for (let obj in props.parts) {
+        categories.push({ name: obj, image: props.parts[obj][0].url })
     }
     const item = props.parts[categories[id].name].filter(obj => obj.id == partId)
     const part = item[0]
-    
+
     const addCart = (e) => {
         e.preventDefault()
-        props.setCart({
-            ...props.cart,
-            items:[...props.cart.items, part]
-        })
-       history.push('/')
+        dispatch({ type: ADD_CART, payload: part })
+        // props.setCart({
+        //     ...props.cart,
+        //     items:[...props.cart.items, part]
+        // })
+        history.push('/')
     }
 
-    return(
+    return (
         <div>
             <div>
                 <h3> {part.name} </h3>

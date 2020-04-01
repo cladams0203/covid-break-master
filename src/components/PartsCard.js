@@ -1,9 +1,14 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import Styled from "styled-components"
-import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { useDispatch, useSelector } from "react-redux"
+import { ADD_CART, REMOVE_CART } from "../reducers/cartReducer"
+
 
 export default function PartsCard(props) {
-    const {name, url, price} = props.part
+    const dispatch = useDispatch()
+    const cart = useSelector(state => state)
+    const { name, url, price } = props.part
     return (
         <div>
             <Modal isOpen={props.modal} toggle={props.toggleModal}>
@@ -39,20 +44,20 @@ export default function PartsCard(props) {
                     </p>
                     <img
                         style={{
-                        maxWidth: "100%",
-                        maxHeight: "173px"
-                    }}
-                        src={url}/>
+                            maxWidth: "100%",
+                            maxHeight: "173px"
+                        }}
+                        src={url} />
                 </ModalBody>
                 <ModalFooter>
-                    {props.cart.items.includes(props.part) ? <button
+                    {cart.items.includes(props.part) ? <button
                         onClick={() => {
-                        props.cartRemove(props.part.id, props.part.name)
-                    }}>Remove from Cart</button> : null}
+                            dispatch({ type: REMOVE_CART, payload: { id: props.part.id, name: props.part.name } })
+                        }}>Remove from Cart</button> : null}
                     <button
                         onClick={() => {
-                        props.cartAdd(props.part)
-                    }}>Add to Cart</button>
+                            dispatch({ type: ADD_CART, payload: props.part })
+                        }}>Add to Cart</button>
                     <Button color="secondary" onClick={props.toggleModal}>Close</Button>
                 </ModalFooter>
             </Modal>
