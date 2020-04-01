@@ -21,10 +21,6 @@ export default function Part(props) {
     const addCart = (e) => {
         e.preventDefault()
         dispatch({ type: ADD_CART, payload: part })
-        // props.setCart({
-        //     ...props.cart,
-        //     items:[...props.cart.items, part]
-        // })
         history.push('/')
     }
 
