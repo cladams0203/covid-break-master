@@ -11,6 +11,7 @@ import Styled from "styled-components";
 
 
 
+
 //styling
 const AllContainer = Styled.div`
 display: flex;
