@@ -34,7 +34,7 @@ margin:50%;
 
 
 export default function CartDetails(props) {
-    const cart = useSelector(state => state)
+    const cart = useSelector(state => state.cart)
     const dispatch = useDispatch()
     const cartTotal = cart.items.reduce((total, item) => {
         return total += item.price

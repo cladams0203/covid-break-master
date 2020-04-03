@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import StoreCategory from './StoreCategory'
 import Styled from "styled-components"
 import Video from "../media/Technology.mp4"
+import { useSelector } from 'react-redux'
 
 //Styling
 const VideoBackground =  Styled.div `
@@ -34,9 +35,11 @@ const colors = ["rgba(217, 66, 255, 0.67)", "rgba(66, 88, 255, 0.67)", "rgba(66,
 
 
 export default function StoreContainer(props) {
+    const parts = useSelector(state => state.parts)
+    console.log(parts)
     const categories = []
-    for(let obj in props.parts) {   
-        categories.push({name: obj, image: props.parts[obj][0].url})
+    for(let obj in parts.parts) {   
+        categories.push({name: obj, image: parts.parts[obj][0].url})
     }
     console.log(categories)
     return (

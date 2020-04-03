@@ -6,7 +6,7 @@ import { ADD_CART, REMOVE_CART } from '../reducers/cartReducer'
 
 
 export default function PartsCard(props) {
-    const cart = useSelector(state => state)
+    const cart = useSelector(state => state.cart)
     const dispatch = useDispatch()
     const {name, url, price} = props.part
     return (

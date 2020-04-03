@@ -22,13 +22,13 @@ border-radius: 25px;
 `
 
 export default function CategoryContainer(props) {
-    const cart = useSelector(state => state)
+    const parts = useSelector(state => state.parts)
     const { id } = useParams()
     const match = useRouteMatch()
 
     const categories = []
-    for(let obj in props.parts) {   
-        categories.push({name: obj, image: props.parts[obj][0].url})
+    for(let obj in parts.parts) {   
+        categories.push({name: obj, image: parts.parts[obj][0].url})
     }
     
     const [modal, setModal] = useState(false);
@@ -38,7 +38,7 @@ export default function CategoryContainer(props) {
 
     return (
         <CategoryDiv>
-            {categories.length > 0 && props.parts[`${categories[id].name}`].map((item, index) => {
+            {categories.length > 0 && parts.parts[`${categories[id].name}`].map((item, index) => {
                 return (
                     <>
                         <ItemDiv onClick={() => {

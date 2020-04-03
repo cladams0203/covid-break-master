@@ -21,7 +21,7 @@ text-decoration: none;
 `
 
 export default function CartHeader(props) {
-  const cart = useSelector(state => state)
+  const cart = useSelector(state => state.cart)
   return (
     <div>
       <CartLink to="/cart">

@@ -4,11 +4,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-import { cartReducer } from './reducers/cartReducer';
+// import { cartReducer } from './reducers/cartReducer';
+import combinedReducers from './reducers/combinedReducers'
+import thunk from 'redux-thunk'
+import logger from 'redux-logger'
 
-const store = createStore(cartReducer)
+const store = createStore(combinedReducers, applyMiddleware(thunk, logger))
 
 ReactDOM.render(
     <Provider store={store}>
