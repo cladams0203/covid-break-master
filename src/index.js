@@ -11,8 +11,8 @@ import { cartReducer } from './reducers/cartReducer';
 const store = createStore(cartReducer)
 
 ReactDOM.render(
-    <Provider store={store}>
-  <React.StrictMode>
+  <Provider store={store}>
+    <React.StrictMode>
       <App />
   </React.StrictMode>
     </Provider>,

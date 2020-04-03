@@ -48,7 +48,7 @@ export default function StoreContainer(props) {
            {categories.map((item, index) => {
                return (
                    <LinkDiv color={colors[index]}>
-                <SuperLink to={`/category/${index}`} key={index}>
+                <SuperLink to={`/category/${index}`} key={index} data-testId={`cat${index}`}>
                     <StoreCategory name={item.name} image={item.image} id={index} />
                 </SuperLink>
                 </LinkDiv>

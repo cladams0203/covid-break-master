@@ -29,15 +29,15 @@ export default function Header(props) {
 
     return (
         <div>
-            <SuperNav>
-                <StyledLink to='/'>Home</StyledLink>
-                <StyledLink to='/category/0'>Processors</StyledLink>
-                <StyledLink to='/category/1'>Motherboards</StyledLink>
-                <StyledLink to='/category/2'>Memory</StyledLink>
-                <StyledLink to='/category/3'>Storage</StyledLink>
-                <StyledLink to='/category/4'>Graphics</StyledLink>
-                <StyledLink to='/category/5'>Cases</StyledLink>
-                <StyledLink to='/category/6'>Coolers</StyledLink>
+            <SuperNav  >
+                <StyledLink data-testId='nav1' to='/'>Home</StyledLink>
+                <StyledLink data-testId='nav2' to='/category/0'>Processors</StyledLink>
+                <StyledLink data-testId='nav3' to='/category/1'>Motherboards</StyledLink>
+                <StyledLink data-testId='nav4' to='/category/2'>Memory</StyledLink>
+                <StyledLink data-testId='nav5' to='/category/3'>Storage</StyledLink>
+                <StyledLink data-testId='nav6' to='/category/4'>Graphics</StyledLink>
+                <StyledLink data-testId='nav7' to='/category/5'>Cases</StyledLink>
+                <StyledLink data-testId='nav8' to='/category/6'>Coolers</StyledLink>
             
             <CartHeader cart={props.cart}/>
             </SuperNav>
